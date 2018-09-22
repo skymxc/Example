@@ -13,6 +13,7 @@ public class MApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
         appComponent = DaggerAPPComponent.builder()
                 .aPPModule(new APPModule(this))
                 .build();

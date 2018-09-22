@@ -4,6 +4,7 @@ package com.skymxc.example.dagger2.di.module;
 import android.app.Application;
 import android.content.Context;
 
+import com.skymxc.example.dagger2.data.RemoteManager;
 import com.skymxc.example.dagger2.di.annotation.APPScoped;
 
 import javax.inject.Inject;
@@ -25,6 +26,12 @@ public class APPModule {
     @Provides
     public Context provideContext(){
         return context;
+    }
+
+    @APPScoped
+    @Provides
+    public RemoteManager provideRemoteManager(){
+        return new RemoteManager();
     }
 
 }
