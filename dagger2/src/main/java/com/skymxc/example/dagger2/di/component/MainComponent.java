@@ -4,10 +4,12 @@ import com.skymxc.example.dagger2.MainActivity;
 import com.skymxc.example.dagger2.di.annotation.ActivityScoped;
 import com.skymxc.example.dagger2.di.module.MainModule;
 
+import javax.inject.Singleton;
+
 import dagger.Subcomponent;
 
 
-@ActivityScoped
+
 @Subcomponent(modules = MainModule.class)
 public interface MainComponent {
 

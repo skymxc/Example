@@ -11,13 +11,12 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 
-@APPScoped
-@Component(modules = {APPModule.class, APIModule.class})
+@Singleton
+@Component(modules = { APIModule.class,APPModule.class})
 public interface APPComponent {
 
     MainComponent plus(MainModule module);
 
     SecondComponent plus(SecondModule module);
 
-    DBManager getDBManager();
 }

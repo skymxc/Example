@@ -20,7 +20,7 @@ public class DBHelper extends SQLiteOpenHelper {
     @Inject
     public DBHelper(Context context) {
         super(context, NAME, null, VERSION);
-        Log.e(DBHelper.class.getSimpleName(), "DBHelper: ");
+        Log.e(DBHelper.class.getSimpleName(), "DBHelper: construct");
     }
 
     @Override
