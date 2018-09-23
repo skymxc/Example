@@ -9,7 +9,7 @@ import android.view.View;
 import com.skymxc.example.dagger2.app.MApplication;
 import com.skymxc.example.dagger2.data.DBManager;
 import com.skymxc.example.dagger2.di.module.MainModule;
-import com.skymxc.example.dagger2.single.MainSingleton;
+import com.skymxc.example.dagger2.single.SingletonObj;
 
 import javax.inject.Inject;
 
@@ -23,10 +23,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Inject DBManager dbManager1;
 
     @Inject
-    MainSingleton mainSingleton;
+    SingletonObj mainSingleton;
 
     @Inject
-    MainSingleton mainSingleton1;
+    SingletonObj mainSingleton1;
 
 
 

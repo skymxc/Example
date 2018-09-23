@@ -7,7 +7,7 @@ import android.util.Log;
 import com.skymxc.example.dagger2.app.MApplication;
 import com.skymxc.example.dagger2.data.DBManager;
 import com.skymxc.example.dagger2.di.module.SecondModule;
-import com.skymxc.example.dagger2.single.MainSingleton;
+import com.skymxc.example.dagger2.single.SingletonObj;
 
 import javax.inject.Inject;
 
@@ -20,8 +20,9 @@ public class SecondActivity extends AppCompatActivity {
     DBManager dbManager1;
     
     @Inject
-    MainSingleton mainSingleton;
-    @Inject MainSingleton mainSingleton1;
+    SingletonObj mainSingleton;
+    @Inject
+    SingletonObj mainSingleton1;
     
 
     @Override

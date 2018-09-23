@@ -6,9 +6,9 @@ import com.skymxc.example.dagger2.di.annotation.ActivityScoped;
 import javax.inject.Inject;
 
 @ActivityScoped
-public class MainSingleton {
+public class SingletonObj {
 
 
     @Inject
-    public MainSingleton(){}
+    public SingletonObj(){}
 }

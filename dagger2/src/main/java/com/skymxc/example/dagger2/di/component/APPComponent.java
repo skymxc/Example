@@ -11,7 +11,7 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 
-@Singleton
+@APPScoped
 @Component(modules = { APIModule.class,APPModule.class})
 public interface APPComponent {
 
