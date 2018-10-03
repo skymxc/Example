@@ -9,7 +9,7 @@ android {
 
 
     defaultConfig {
-        applicationId "com.skymxc.example.dagger2"
+        applicationId "com.skymxc.example.exchange"
         minSdkVersion androidConfig.minSdkVersion
         targetSdkVersion androidConfig.targetSdkVersion
         versionCode 1
@@ -31,16 +31,9 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-
     implementation dependencieConfig.support_appcompat_v7
     implementation dependencieConfig.support_constraint_layout
     testImplementation dependencieConfig.test_junit
     androidTestImplementation dependencieConfig.test_runner
     androidTestImplementation dependencieConfig.test_espresso
-
-    implementation dependencieConfig.dagger
-    annotationProcessor dependencieConfig.dagger_compiler
-    implementation dependencieConfig.okhttp
-//    implementation 'com.squareupeup.retrofit2:retrofit:2.4.0'
-
 }
