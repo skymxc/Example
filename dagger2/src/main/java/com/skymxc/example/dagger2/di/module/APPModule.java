@@ -7,6 +7,9 @@ import android.content.Context;
 import com.skymxc.example.dagger2.di.annotation.APPScoped;
 import com.skymxc.example.dagger2.ui.main.MainComponent;
 import com.skymxc.example.dagger2.ui.second.SecondComponent;
+import com.skymxc.example.dagger2.ui.second.fragment.one.OneComponent;
+import com.skymxc.example.dagger2.ui.second.fragment.two.TwoComponent;
+import com.skymxc.example.dagger2.ui.second.fragment.two.TwoFragment;
 
 import dagger.Binds;
 import dagger.Module;
