@@ -1,17 +1,14 @@
 package com.skymxc.example.dagger2.di.component;
 
-import android.app.Application;
-
 import com.skymxc.example.dagger2.MyApplication;
 import com.skymxc.example.dagger2.di.annotation.APPScoped;
 import com.skymxc.example.dagger2.di.module.APIModule;
 import com.skymxc.example.dagger2.di.module.APPModule;
 import com.skymxc.example.dagger2.di.module.ActivityBuilder;
 
-import dagger.BindsInstance;
 import dagger.Component;
-import dagger.android.ActivityKey;
 import dagger.android.AndroidInjectionModule;
+import dagger.android.AndroidInjector;
 
 /**
  * Component 是一张图表，我们构建它，它将通过它的模块提供注入的实例。
@@ -27,15 +24,9 @@ import dagger.android.AndroidInjectionModule;
         APPModule.class,
         AndroidInjectionModule.class,
         ActivityBuilder.class})
-public interface APPComponent {
-
-    void inject(MyApplication app);
+public interface APPComponent extends AndroidInjector<MyApplication> {
 
     @Component.Builder
-    interface Builder {
-        @BindsInstance
-        Builder application(Application application);
-
-        APPComponent build();
+    abstract class Builder extends AndroidInjector.Builder<MyApplication> {
     }
 }

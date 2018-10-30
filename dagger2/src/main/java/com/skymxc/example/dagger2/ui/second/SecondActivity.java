@@ -56,7 +56,7 @@ public class SecondActivity extends AppCompatActivity implements SecondView,
         presenter.loadData();
 
         if (null == savedInstanceState) {
-            applyFragment(oneFragment);
+           mRGMenu.check(R.id.rb_one);
         }
     }
 

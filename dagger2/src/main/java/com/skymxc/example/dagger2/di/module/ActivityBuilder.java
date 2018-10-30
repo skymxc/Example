@@ -4,18 +4,18 @@ import android.app.Activity;
 import android.support.v4.app.Fragment;
 
 import com.skymxc.example.dagger2.ui.main.MainActivity;
-import com.skymxc.example.dagger2.ui.main.MainComponent;
+import com.skymxc.example.dagger2.ui.main.MainModule;
 import com.skymxc.example.dagger2.ui.second.SecondActivity;
-import com.skymxc.example.dagger2.ui.second.SecondComponent;
-import com.skymxc.example.dagger2.ui.second.fragment.one.OneComponent;
+import com.skymxc.example.dagger2.ui.second.SecondFragmentBuilder;
+import com.skymxc.example.dagger2.ui.second.SecondModule;
 import com.skymxc.example.dagger2.ui.second.fragment.one.OneFragment;
-import com.skymxc.example.dagger2.ui.second.fragment.two.TwoComponent;
 import com.skymxc.example.dagger2.ui.second.fragment.two.TwoFragment;
 
 import dagger.Binds;
 import dagger.Module;
 import dagger.android.ActivityKey;
 import dagger.android.AndroidInjector;
+import dagger.android.ContributesAndroidInjector;
 import dagger.android.support.FragmentKey;
 import dagger.multibindings.IntoMap;
 
@@ -27,16 +27,10 @@ import dagger.multibindings.IntoMap;
 @Module
 public abstract class ActivityBuilder {
 
-    @Binds
-    @IntoMap
-    @ActivityKey(MainActivity.class)
-    abstract AndroidInjector.Factory<? extends Activity> bindMainActivity(MainComponent.Builder builder);
+    @ContributesAndroidInjector(modules = MainModule.class)
+    abstract MainActivity bindMainActivity();
 
-    @Binds
-    @IntoMap
-    @ActivityKey(SecondActivity.class)
-    abstract AndroidInjector.Factory<? extends Activity> bindSecondActivity(SecondComponent.Builder builder);
-
-
+    @ContributesAndroidInjector(modules = {SecondModule.class,SecondFragmentBuilder.class})
+    abstract SecondActivity bindSecondActivity();
 
 }

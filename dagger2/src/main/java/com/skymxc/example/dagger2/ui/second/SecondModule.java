@@ -3,9 +3,7 @@ package com.skymxc.example.dagger2.ui.second;
 import android.support.v4.app.Fragment;
 
 import com.skymxc.example.dagger2.data.ApiService;
-import com.skymxc.example.dagger2.ui.second.fragment.one.OneComponent;
 import com.skymxc.example.dagger2.ui.second.fragment.one.OneFragment;
-import com.skymxc.example.dagger2.ui.second.fragment.two.TwoComponent;
 import com.skymxc.example.dagger2.ui.second.fragment.two.TwoFragment;
 
 import dagger.Binds;
