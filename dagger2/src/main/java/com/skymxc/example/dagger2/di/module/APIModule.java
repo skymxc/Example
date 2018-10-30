@@ -1,5 +1,6 @@
 package com.skymxc.example.dagger2.di.module;
 
+import com.skymxc.example.dagger2.data.ApiService;
 import com.skymxc.example.dagger2.di.annotation.APPScoped;
 
 import dagger.Module;

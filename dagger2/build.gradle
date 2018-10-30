@@ -40,6 +40,11 @@ dependencies {
 
     implementation dependencieConfig.dagger
     annotationProcessor dependencieConfig.dagger_compiler
+    implementation dependencieConfig.dagger_android
+    implementation dependencieConfig.dagger_android_support
+    annotationProcessor dependencieConfig.dagger_android_processor
+
+    
     implementation dependencieConfig.okhttp
 //    implementation 'com.squareupeup.retrofit2:retrofit:2.4.0'
 
