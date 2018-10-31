@@ -18,9 +18,10 @@ import javax.inject.Inject;
 import dagger.android.AndroidInjection;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.AndroidSupportInjection;
+import dagger.android.support.DaggerAppCompatActivity;
 import dagger.android.support.HasSupportFragmentInjector;
 
-public class SecondActivity extends AppCompatActivity implements SecondView,
+public class SecondActivity extends DaggerAppCompatActivity implements SecondView,
         RadioGroup.OnCheckedChangeListener,
         HasSupportFragmentInjector {
 
@@ -46,7 +47,6 @@ public class SecondActivity extends AppCompatActivity implements SecondView,
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        AndroidInjection.inject(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
         mRGMenu = findViewById(R.id.rg_menu);

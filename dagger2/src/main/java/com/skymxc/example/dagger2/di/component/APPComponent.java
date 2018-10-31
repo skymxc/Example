@@ -1,11 +1,14 @@
 package com.skymxc.example.dagger2.di.component;
 
+import android.app.Application;
+
 import com.skymxc.example.dagger2.MyApplication;
 import com.skymxc.example.dagger2.di.annotation.APPScoped;
 import com.skymxc.example.dagger2.di.module.APIModule;
 import com.skymxc.example.dagger2.di.module.APPModule;
 import com.skymxc.example.dagger2.di.module.ActivityBuilder;
 
+import dagger.BindsInstance;
 import dagger.Component;
 import dagger.android.AndroidInjectionModule;
 import dagger.android.AndroidInjector;
@@ -26,7 +29,5 @@ import dagger.android.AndroidInjector;
         ActivityBuilder.class})
 public interface APPComponent extends AndroidInjector<MyApplication> {
 
-    @Component.Builder
-    abstract class Builder extends AndroidInjector.Builder<MyApplication> {
-    }
+
 }

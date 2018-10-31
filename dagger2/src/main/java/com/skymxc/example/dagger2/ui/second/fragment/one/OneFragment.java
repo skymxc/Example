@@ -16,12 +16,13 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import dagger.android.support.AndroidSupportInjection;
+import dagger.android.support.DaggerFragment;
 
 /**
  * Created by mxc on 2018/10/30.
  * description:
  */
-public class OneFragment extends Fragment {
+public class OneFragment extends DaggerFragment {
 
     public static OneFragment instance(){
         Bundle bundle =new Bundle();
@@ -34,11 +35,7 @@ public class OneFragment extends Fragment {
     @Inject
     String name;
 
-    @Override
-    public void onAttach(Context context) {
-        AndroidSupportInjection.inject(this);
-        super.onAttach(context);
-    }
+
 
     @Nullable
     @Override

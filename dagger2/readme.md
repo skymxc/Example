@@ -101,9 +101,7 @@ public interface APPComponent {
          ActivityBuilder.class})
  public interface APPComponent extends AndroidInjector<MyApplication> {
  
-     @Component.Builder
-     abstract class Builder extends AndroidInjector.Builder<MyApplication> {
-     }
+ 
  }
 
  ```
@@ -126,8 +124,105 @@ public interface APPComponent {
   如果需要 注射 Service 就需要 另一个了
   @Inject DispatchingAndroidInjector<Service> serviceInjector;
   
-  dagger.android 为我们封装好了一个 DaggerApplication ，上述的这些都封装了进去
+  dagger.android 为我们封装好了一个 DaggerApplication ，上述的这些都封装了进去；
   
+  可以看下 DaggerApplication 的源码 就可以清楚的明白什么意思;
+  
+  如果你的 Application 本来没有其他任务例如 继承自 MultiDexApplication;就可以直接继承 DaggerApplication 来省略这些代码；
+  
+  ```java
+  @Beta
+  public abstract class DaggerApplication extends Application
+      implements HasActivityInjector,
+          HasFragmentInjector,
+          HasServiceInjector,
+          HasBroadcastReceiverInjector,
+          HasContentProviderInjector {
+  
+    @Inject DispatchingAndroidInjector<Activity> activityInjector;
+    @Inject DispatchingAndroidInjector<BroadcastReceiver> broadcastReceiverInjector;
+    @Inject DispatchingAndroidInjector<Fragment> fragmentInjector;
+    @Inject DispatchingAndroidInjector<Service> serviceInjector;
+    @Inject DispatchingAndroidInjector<ContentProvider> contentProviderInjector;
+    private volatile boolean needToInject = true;
+  
+    @Override
+    public void onCreate() {
+      super.onCreate();
+      injectIfNecessary();
+    }
+  
+    /**
+     * Implementations should return an {@link AndroidInjector} for the concrete {@link
+     * DaggerApplication}. Typically, that injector is a {@link dagger.Component}.
+     */
+    @ForOverride
+    protected abstract AndroidInjector<? extends DaggerApplication> applicationInjector();
+  
+    /**
+     * Lazily injects the {@link DaggerApplication}'s members. Injection cannot be performed in {@link
+     * Application#onCreate()} since {@link android.content.ContentProvider}s' {@link
+     * android.content.ContentProvider#onCreate() onCreate()} method will be called first and might
+     * need injected members on the application. Injection is not performed in the constructor, as
+     * that may result in members-injection methods being called before the constructor has completed,
+     * allowing for a partially-constructed instance to escape.
+     */
+    private void injectIfNecessary() {
+      if (needToInject) {
+        synchronized (this) {
+          if (needToInject) {
+            @SuppressWarnings("unchecked")
+            AndroidInjector<DaggerApplication> applicationInjector =
+                (AndroidInjector<DaggerApplication>) applicationInjector();
+            applicationInjector.inject(this);
+            if (needToInject) {
+              throw new IllegalStateException(
+                  "The AndroidInjector returned from applicationInjector() did not inject the "
+                      + "DaggerApplication");
+            }
+          }
+        }
+      }
+    }
+  
+    @Inject
+    void setInjected() {
+      needToInject = false;
+    }
+  
+    @Override
+    public DispatchingAndroidInjector<Activity> activityInjector() {
+      return activityInjector;
+    }
+  
+    @Override
+    public DispatchingAndroidInjector<Fragment> fragmentInjector() {
+      return fragmentInjector;
+    }
+  
+    @Override
+    public DispatchingAndroidInjector<BroadcastReceiver> broadcastReceiverInjector() {
+      return broadcastReceiverInjector;
+    }
+  
+    @Override
+    public DispatchingAndroidInjector<Service> serviceInjector() {
+      return serviceInjector;
+    }
+  
+    // injectIfNecessary is called here but not on the other *Injector() methods because it is the
+    // only one that should be called (in AndroidInjection.inject(ContentProvider)) before
+    // Application.onCreate()
+    @Override
+    public AndroidInjector<ContentProvider> contentProviderInjector() {
+      injectIfNecessary();
+      return contentProviderInjector;
+    }
+  }
+
+  ```
+  
+  改造前 
   ```java
   public class MyApplication extends Application implements HasActivityInjector {
   
@@ -149,3 +244,23 @@ public interface APPComponent {
   }
 
   ```
+  
+  使用 DaggerApplication 后
+  
+  ```java
+  public class MyApplication extends DaggerApplication {
+  
+      @Override
+      protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
+          return DaggerAPPComponent.builder().build();
+      }
+  
+  
+  }
+  ```
+  
+  使用 AndroidInjector<> ，DaggerApplication,DaggerActivity DaggerXxx etc..确实很方便，但也有很多不便，要知道 Java 是单继承的。
+  
+  我觉得 按需实现接口的方式可能更好一点。 All in all ：看需求而定。
+  
+  

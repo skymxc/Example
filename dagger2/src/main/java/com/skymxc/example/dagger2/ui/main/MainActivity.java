@@ -11,8 +11,9 @@ import com.skymxc.example.dagger2.ui.second.SecondActivity;
 import javax.inject.Inject;
 
 import dagger.android.AndroidInjection;
+import dagger.android.support.DaggerAppCompatActivity;
 
-public class MainActivity extends AppCompatActivity implements MainView,View.OnClickListener{
+public class MainActivity extends DaggerAppCompatActivity implements MainView,View.OnClickListener{
 
 
     @Inject MainPresenter presenter;
@@ -22,7 +23,6 @@ public class MainActivity extends AppCompatActivity implements MainView,View.OnC
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // 要在  super.onCreate(savedInstanceState); 之前 因为 ---
-        AndroidInjection.inject(this);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
