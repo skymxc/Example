@@ -18,5 +18,4 @@ public class MyApplication extends DaggerApplication {
         return DaggerAPPComponent.builder().build();
     }
 
-
 }

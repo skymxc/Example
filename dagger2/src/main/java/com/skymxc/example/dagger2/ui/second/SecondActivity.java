@@ -31,9 +31,6 @@ public class SecondActivity extends DaggerAppCompatActivity implements SecondVie
     }
 
     @Inject
-    DispatchingAndroidInjector<Fragment> dispatchingAndroidInjector;
-
-    @Inject
     SecondPresenter presenter;
 
     @Inject
@@ -78,11 +75,6 @@ public class SecondActivity extends DaggerAppCompatActivity implements SecondVie
                 applyFragment(twoFragment);
                 break;
         }
-    }
-
-    @Override
-    public DispatchingAndroidInjector<Fragment> supportFragmentInjector() {
-        return dispatchingAndroidInjector;
     }
 
     private void applyFragment(Fragment fragment) {

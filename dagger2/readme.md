@@ -264,3 +264,171 @@ public interface APPComponent {
   我觉得 按需实现接口的方式可能更好一点。 All in all ：看需求而定。
   
   
+  ## 简化版步骤
+  
+  ### Application 层的 Component
+  
+  
+  APPComponent.class
+  ```java
+  @APPScoped
+  @Component(modules = {APIModule.class,
+          APPModule.class,
+          AndroidInjectionModule.class,
+          ActivityBuilder.class})
+  public interface APPComponent extends AndroidInjector<MyApplication> {
+  
+  
+  }
+  ```
+  
+  ActivityBuilder.class 映射到我们的 Android组件 省略了 模块中 subcomponents ={}
+  ```java
+  @Module
+  public abstract class ActivityBuilder {
+  
+      @ContributesAndroidInjector(modules = MainModule.class)
+      abstract MainActivity bindMainActivity();
+  
+      @ContributesAndroidInjector(modules = {SecondModule.class,SecondFragmentBuilder.class})
+      abstract SecondActivity bindSecondActivity();
+  
+  }
+
+  ```
+APPModule.class 凡是参数要转换为返回数据的 可直接使用 @Binds   
+  ```java
+  @Module()
+  public abstract class APPModule {
+  
+  
+      @Binds //@Binds 注解委托代理的 抽象方法；必须是抽象方法；必须有一个参数，参数必须能转换为 返回类型 不然无法生成代码就会报错。
+      @APPScoped
+      abstract Context provideContext(Application application);
+  
+  
+  }
+
+  ```
+  
+  ### Activity 层
+  
+  因为 SubComponent 是重复性代码，每个Activity都需要而且只是连接 module的桥梁，所以省略了，
+  原本的 ActivityModule 直接定义到 了ActivityBuilder.clas 中的 @ContributesAndroidInjector(modules=ActivityModule.class) 中。
+  
+  现在只需要定义 Activity 层的 Module 即可；
+  
+  以 MainModule.class 示例 
+  ```java
+  @Module
+  public class MainModule {
+  
+      @Provides
+      public MainView provideMainView(MainActivity activity){
+          return activity;
+      }
+  
+      @Provides
+      public MainPresenter provideMainPresenter(MainView view, ApiService apiService){
+          return new MainPresenter(view,apiService);
+      }
+  
+  }
+
+  ```
+  
+  
+  
+  ### Fragment 层
+  
+  和 Activity 层是一样的 也将重复性代码省略 直接更改了 SecondFragmentBuilder.class
+  
+  所以 Activity 层的 SecondFragmentBuilder.class 如下
+  
+  ```java
+  @Module()
+  public abstract class SecondFragmentBuilder {
+  
+  
+      @ContributesAndroidInjector(modules = OneModule.class)
+      abstract OneFragment bindOneFragment();
+  
+      @ContributesAndroidInjector(modules = TwoModule.class)
+      abstract TwoFragment bindTwoFragment();
+  }
+
+  ```
+  
+  
+  ----
+  
+  将类图组织好之后就是 构建注入 了。
+  
+  ### 注入
+  
+  #### Application 注入
+  
+  直接继承自 DaggerApplication ;这是一个 dagger.android 中定义好的类 是 HasActivityInjector,
+                                                                HasFragmentInjector,
+                                                                HasServiceInjector,
+                                                                HasBroadcastReceiverInjector,
+                                                                HasContentProviderInjector 
+ 这些接口的默认实现；如果没有其他任务可直接继承这个类。注入代码已经封装在了里面。
+ 如果有其他需求，不能直接继承，可以按需实现实现接口
+                                                          
+  MyApplication.class
+  ```java
+  public class MyApplication extends DaggerApplication {
+  
+      @Override
+      protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
+          return DaggerAPPComponent.builder().build();
+      }
+  
+  }
+  ```
+  
+  #### Activity 注入
+  
+  Activity 内没有 Fragment 层的话还是按照原来的注入 在 setContentView() 前使用 ` AndroidInjection.inject(this);`
+  
+  如果Activity 内有 Fragment 层的需要注入可以 直接继承自 DaggerAppCompatActivity || DaggerActivity ;看你用的时哪个包下的了。
+  同样的，如果不能继承，可以按需实现接口；
+ 
+   这两个类都是  HasFragmentInjector, HasSupportFragmentInjector 接口的实现类。将注入代码都封装好了。
+   具体的可以看看这些类的源码；
+   ```java
+   @Beta
+   public abstract class DaggerAppCompatActivity extends AppCompatActivity
+       implements HasFragmentInjector, HasSupportFragmentInjector {
+   
+     @Inject DispatchingAndroidInjector<Fragment> supportFragmentInjector;
+     @Inject DispatchingAndroidInjector<android.app.Fragment> frameworkFragmentInjector;
+   
+     @Override
+     protected void onCreate(@Nullable Bundle savedInstanceState) {
+       AndroidInjection.inject(this);
+       super.onCreate(savedInstanceState);
+     }
+   
+     @Override
+     public AndroidInjector<Fragment> supportFragmentInjector() {
+       return supportFragmentInjector;
+     }
+   
+     @Override
+     public AndroidInjector<android.app.Fragment> fragmentInjector() {
+       return frameworkFragmentInjector;
+     }
+   }
+
+   ```
+ #### Fragment 注入
+ 
+  和上面的一样，都有封装的类可以使用 `DaggerFragment`;
+  
+  -----
+  
+  到这就配置好了，可以直接构建了。
+  
+  
