@@ -1,23 +1,32 @@
 package com.skymxc.example.dagger2.di.component;
 
-import com.skymxc.example.dagger2.data.DBManager;
+import com.skymxc.example.dagger2.MApplication;
 import com.skymxc.example.dagger2.di.annotation.APPScoped;
 import com.skymxc.example.dagger2.di.module.APIModule;
 import com.skymxc.example.dagger2.di.module.APPModule;
-import com.skymxc.example.dagger2.di.module.MainModule;
-import com.skymxc.example.dagger2.di.module.SecondModule;
+import com.skymxc.example.dagger2.di.module.ActivityBuilder;
 
-import javax.inject.Singleton;
-
+import dagger.BindsInstance;
 import dagger.Component;
+import dagger.android.AndroidInjectionModule;
+import dagger.android.AndroidInjector;
+import dagger.android.support.AndroidSupportInjection;
+import dagger.android.support.AndroidSupportInjectionModule;
 
 @APPScoped
-@Component(modules = { APIModule.class,APPModule.class})
-public interface APPComponent {
+@Component(modules = { APIModule.class,APPModule.class,
+        ActivityBuilder.class,
+        AndroidSupportInjectionModule.class})
+public interface APPComponent  extends AndroidInjector<MApplication> {
 
-    MainComponent plus(MainModule module);
+    @Component.Builder
+    interface Builder {
 
-    SecondComponent plus(SecondModule module);
+        @BindsInstance
+        APPComponent.Builder application(MApplication application);
 
-    DBManager getDBManager();
+        APPComponent build();
+    }
+
+
 }

@@ -1,3 +1,4 @@
+def dagger_version = '2.16'
 ext{
     version = [
             compileSdkVersion : 28,
@@ -14,9 +15,12 @@ ext{
             support_constraint_layout :"com.android.support.constraint:constraint-layout:1.1.3",
 
 
-            dagger :"com.google.dagger:dagger:2.16",
-            dagger_compiler:"com.google.dagger:dagger-compiler:2.16",
-
+            dagger :"com.google.dagger:dagger:${dagger_version}",
+            dagger_compiler:"com.google.dagger:dagger-compiler:${dagger_version}",
+            dagger_android           : "com.google.dagger:dagger-android:${dagger_version}",
+            dagger_android_support   : "com.google.dagger:dagger-android-support:${dagger_version}",
+            dagger_android_processor : "com.google.dagger:dagger-android-processor:${dagger_version}",
+            
             okhttp:"com.squareup.okhttp3:okhttp:3.11.0",
             retrofit:"com.squareupeup.retrofit2:retrofit:2.4.0"
 

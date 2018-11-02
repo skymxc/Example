@@ -9,28 +9,21 @@ import com.skymxc.example.dagger2.di.annotation.APPScoped;
 
 import javax.inject.Inject;
 
+import dagger.Binds;
 import dagger.Module;
 import dagger.Provides;
 
 @Module
-public class APPModule {
-
-    private Application context;
+public  abstract  class APPModule {
 
 
-    public APPModule(Application context){
-        this.context = context;
-    }
 
-
-    @Provides
-    public Context provideContext(){
-        return context;
-    }
+    @Binds
+    abstract Context provideContext(Application application);
 
     @APPScoped
     @Provides
-    public RemoteManager provideRemoteManager(){
+    public static RemoteManager provideRemoteManager(){
         return new RemoteManager();
     }
 
