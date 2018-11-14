@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/btn_load_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="load top "
+        android:textAllCaps="false"/>
+
+    <Button
+        android:id="@+id/btn_clean_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="clean top"
+        android:textAllCaps="false"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <ImageView
+        android:id="@+id/iv_top"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_load_top"
+        android:layout_margin="5dp"/>
+    <TextView
+        android:id="@+id/tv_options"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="options"
+        app:layout_constraintTop_toBottomOf="@id/iv_top"
+        android:layout_margin="5dp"/>
+
+    <RadioGroup
+        android:id="@+id/rg_options"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/tv_options">
+        <RadioButton
+            android:id="@+id/rb_option_circle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="circleCrop"/>
+        <RadioButton
+            android:id="@+id/rb_center_crop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="centerCrop"/>
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btn_apply_options"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="apply options"
+        android:textAllCaps="false"
+        app:layout_constraintTop_toBottomOf="@id/rg_options"
+        android:layout_margin="5dp"/>
+
+</android.support.constraint.ConstraintLayout>

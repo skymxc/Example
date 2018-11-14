@@ -1,0 +1,45 @@
+apply plugin: 'com.android.application'
+def library = rootProject.ext.dependencie
+android {
+    compileSdkVersion rootProject.ext.version.compileSdkVersion
+
+
+
+    defaultConfig {
+        applicationId "com.skymxc.example.glide"
+        minSdkVersion rootProject.ext.version.minSdkVersion
+        targetSdkVersion rootProject.ext.version.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation library.support_appcompat_v7
+    implementation library.support_constraint_layout
+    testImplementation library.test_junit
+    androidTestImplementation library.test_runner
+    androidTestImplementation library.test_espresso
+    implementation(library.glide) {
+        exclude group: 'com.android.support'
+    }
+    annotationProcessor library.glide_compiler
+    implementation library.okhttp
+    implementation library.retrofit
+//    implementation 'com.squareup.okhttp3:okhttp:3.11.0'
+//    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation library.retrofit_adapter_rxjava
+    implementation library.retrofit_converter_gson
+}
