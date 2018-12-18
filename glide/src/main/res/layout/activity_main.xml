@@ -30,11 +30,11 @@
         app:layout_constraintTop_toBottomOf="@id/btn_load_top"
         android:layout_margin="5dp"/>
     <TextView
-        android:id="@+id/tv_options"
+        android:id="@+id/tv_options_crop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAllCaps="false"
-        android:text="options"
+        android:text="options_crop"
         app:layout_constraintTop_toBottomOf="@id/iv_top"
         android:layout_margin="5dp"/>
 
@@ -43,7 +43,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/tv_options">
+        android:checkedButton="@+id/rb_option_circle"
+        app:layout_constraintTop_toBottomOf="@id/tv_options_crop">
         <RadioButton
             android:id="@+id/rb_option_circle"
             android:layout_width="wrap_content"

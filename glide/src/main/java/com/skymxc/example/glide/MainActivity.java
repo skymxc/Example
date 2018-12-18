@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
@@ -17,12 +18,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public static final String TOP_URL = "https://ws1.sinaimg.cn/large/0065oQSqly1fubd0blrbuj30ia0qp0yi.jpg";
     ImageView mIVTop;
+    RadioGroup mRGOption;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mIVTop = findViewById(R.id.iv_top);
+        mRGOption = findViewById(R.id.rg_options);
         findViewById(R.id.btn_clean_top).setOnClickListener(this);
         findViewById(R.id.btn_load_top).setOnClickListener(this);
         findViewById(R.id.btn_apply_options).setOnClickListener(this);
@@ -42,13 +45,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 GlideApp.with(this).clear(mIVTop);
                 break;
             case R.id.btn_apply_options:
+                //应用选项示例 直接 使用 RequestOptions 提供的 静态 API ；其中提供了很多常用的API
                 GlideRequest<Drawable> glideRequest = GlideApp.with(this)
                         .load(TOP_URL);
 
                 glideRequest.placeholder(R.drawable.placeholder);
                 glideRequest.error(R.drawable.error);
-
-                glideRequest.apply(RequestOptions.circleCropTransform());
+                if (mRGOption.getCheckedRadioButtonId()==R.id.rb_option_circle) {
+                    glideRequest.apply(RequestOptions.circleCropTransform());
+//                    glideRequest.circleCrop();
+                }else if (mRGOption.getCheckedRadioButtonId()==R.id.rb_center_crop){
+                    glideRequest.apply(RequestOptions.centerCropTransform());
+//                    glideRequest.centerCrop();
+                }
 
                 glideRequest.transition(DrawableTransitionOptions.withCrossFade(2000));
                 glideRequest.diskCacheStrategy(DiskCacheStrategy.ALL);

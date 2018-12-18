@@ -20,6 +20,17 @@ Glide 大部分的请求选项都可以 通过 RequestOptions 类 和 apply() �
 
 apply() 方法可以被重复调用多次，所以选项可以被组合使用。如果存在冲突，应用冲突的最后一个选项。
 
+RequestOptions 中提供给了 很多常用的 静态 选项，可以直接使用.
+
+如果你正在使用 Generated API，可以直接调用 一些方法，例如：
+```
+GlideApp.with(fragment)
+    .load(url)
+    
+    .centerCrop()
+  
+    .into(imageView);
+``` 
 ## 过渡选项
 
 TransitionOptions 用于决定你的加载完成时会发生什么。
