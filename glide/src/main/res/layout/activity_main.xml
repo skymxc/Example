@@ -28,7 +28,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_load_top"
-        android:layout_margin="5dp"/>
+        android:layout_margin="5dp"
+        android:background="@drawable/shape_border"/>
     <TextView
         android:id="@+id/tv_options_crop"
         android:layout_width="wrap_content"
@@ -56,6 +57,37 @@
             android:layout_height="wrap_content"
             android:text="centerCrop"/>
     </RadioGroup>
+    <TextView
+        android:id="@+id/tv_transitions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="options_crop"
+        app:layout_constraintTop_toBottomOf="@id/rg_options"
+        android:layout_margin="5dp"/>
+    <RadioGroup
+        android:id="@+id/rg_transitions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:checkedButton="@+id/rb_no_transition"
+        app:layout_constraintTop_toBottomOf="@id/tv_transitions">
+        <RadioButton
+            android:id="@+id/rb_no_transition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="no"/>
+        <RadioButton
+            android:id="@+id/rb_transition_fade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="fade"/>
+        <RadioButton
+            android:id="@+id/rb_transition_crossfade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="crossfade"/>
+    </RadioGroup>
 
     <Button
         android:id="@+id/btn_apply_options"
@@ -63,7 +95,7 @@
         android:layout_height="wrap_content"
         android:text="apply options"
         android:textAllCaps="false"
-        app:layout_constraintTop_toBottomOf="@id/rg_options"
+        app:layout_constraintTop_toBottomOf="@id/rg_transitions"
         android:layout_margin="5dp"/>
 
 </android.support.constraint.ConstraintLayout>

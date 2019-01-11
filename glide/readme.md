@@ -31,9 +31,11 @@ GlideApp.with(fragment)
   
     .into(imageView);
 ``` 
-## 过渡选项
+## 过渡选项 
 
-TransitionOptions 用于决定你的加载完成时会发生什么。
+用于决定你的加载完成时会发生什么。
+
+TransitionOptions
  
  使用 TransitionOption 可以应用以下变换：
  - View淡入
@@ -42,3 +44,9 @@ TransitionOptions 用于决定你的加载完成时会发生什么。
  
  如果不使用变换，你的图像将会“跳入”其显示位置，直接替换掉之前的图像。为了避免这种突然的改变，你可以淡入view，或者让多个Drawable交叉淡入，
  而这些都需要使用TransitionOptions完成。
+ 
+ ## 遇到的不解
+ 
+ - 使用 clear() 后 
+  图片编程了 placeholder 使用的占位图。
+  
