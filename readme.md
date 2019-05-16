@@ -7,3 +7,4 @@
     - dagger_android_complicated  这个分支 dagger.android 的理解和使用 
     - dagger_android_simplified 这个分支 dagger.android 的理解和使用 相对dagger_android_complicated简单一些
 - exchange 使用 ConstraintLayout 实现的位置互换Demo
+- mpchart MPAndroidChart 使用记录 https://github.com/PhilJay/MPAndroidChart
