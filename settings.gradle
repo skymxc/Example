@@ -1,4 +1,4 @@
 //include ':app'
 //include ':dagger2'
 //include ':exchange'
-include ':glide', ':mpchart'
+include ':glide', ':mpchart', ':biometric'

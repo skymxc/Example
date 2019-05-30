@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/btn_fingerprint_simple"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="简单指纹识别"/>
+
+    <Button
+        android:id="@+id/btn_fingerprint_encrypt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="指纹保护加密"/>
+  <Button
+        android:id="@+id/btn_fingerprint_decrypt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="指纹保护解密"/>
+
+    <Button
+        android:id="@+id/btn_biometric_simple"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="简单生物识别"/>
+    <Button
+        android:id="@+id/btn_biometric_encrypt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="生物识别加密"/>
+    <Button
+        android:id="@+id/btn_biometric_decrypt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="生物识别解密"/>
+
+    <Button
+        android:id="@+id/btn_simple_x"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="简单识别兼容版本处理"/>
+    <Button
+        android:id="@+id/btn_encrypt_x"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="加密兼容版本处理"/>
+
+
+   <Button
+        android:id="@+id/btn_decrypt_x"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="解密兼容版本处理"/>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/tv_log"/>
+    </ScrollView>
+</LinearLayout>

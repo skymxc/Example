@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Biometric</string>
+    <string name="fingerprint_description">确认指纹</string>
+    <string name="description_fingerprint_icon">指纹图标</string>
+    <string name="fingerprint_hint">触摸传感器</string>
+    <string name="fingerprint_not_recognized">不能识别指纹,请重试</string>
+    <string name="fingerprint_success">指纹已识别</string>
+</resources>
