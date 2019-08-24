@@ -1,13 +1,15 @@
 # Switch 自定义样式
 
-
-自定义样式就是 更改字体，按钮，轨道样式。
-
-![switch](\image\switch.png)
-
 先上效果
 
-![效果](\image\switch_screen.png)
+![效果](https://github.com/skymxc/Example/blob/master/widget-switch/image/switch_screen.png)
+
+<br/>
+自定义样式就是 更改字体，按钮，轨道样式。
+
+![switch](https://github.com/skymxc/Example/blob/master/widget-switch/image/switch.png)
+
+
 
 ## 使用的属性
 - thumb 按钮
