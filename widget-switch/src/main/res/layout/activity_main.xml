@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+    <TextView
+        android:id="@+id/tv_native"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="原生" />
+
+    <Switch
+        android:id="@+id/switch_native"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp" />
+
+    <Switch
+        android:id="@+id/switch_native_show_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginLeft="10dp"
+        android:showText="true"
+        android:textOff="off"
+        android:textOn="on" />
+    <TextView
+        android:id="@+id/tv_no_native"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="不是原生"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_native" />
+    <Switch
+        android:id="@+id/switch_no_native"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:thumb="@drawable/thumb_selector"
+        android:track="@drawable/track_selector" />
+
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:showText="true"
+        android:textOff="off"
+        android:textOn="on"
+        android:checked="true"
+        android:switchTextAppearance="@style/SwitchTheme"
+        android:thumb="@drawable/thumb_selector"
+        android:track="@drawable/track_selector" />
+
+
+
+
+
+</LinearLayout>

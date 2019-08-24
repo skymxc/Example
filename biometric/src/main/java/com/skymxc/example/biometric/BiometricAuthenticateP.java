@@ -37,9 +37,9 @@ public class BiometricAuthenticateP implements IBiometricAuthenticate {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 cancellationSignal.cancel();
-                if (null!=callback){
-                    callback.onNegativeClicked();
-                }
+//                if (null!=callback){
+//                    callback.onNegativeClicked();
+//                }
             }
         });
         BiometricPrompt build = builder.build();
