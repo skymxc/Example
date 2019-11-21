@@ -1,101 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/btn_load_top"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="load top "
-        android:textAllCaps="false"/>
-
-    <Button
-        android:id="@+id/btn_clean_top"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="clean top"
-        android:textAllCaps="false"
-        app:layout_constraintRight_toRightOf="parent"/>
-
-    <ImageView
-        android:id="@+id/iv_top"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+<!--        -->
+    <View
+        android:id="@+id/bg"
+        android:layout_width="302dp"
+        android:layout_height="202dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_load_top"
-        android:layout_margin="5dp"
-        android:background="@drawable/shape_border"/>
-    <TextView
-        android:id="@+id/tv_options_crop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAllCaps="false"
-        android:text="options_crop"
-        app:layout_constraintTop_toBottomOf="@id/iv_top"
-        android:layout_margin="5dp"/>
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/colorBlackLight"/>
 
-    <RadioGroup
-        android:id="@+id/rg_options"
-        android:layout_width="wrap_content"
+    <ImageView
+        android:id="@+id/iv_loop"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="1dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/ll_control_top"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@color/colorBlackLight"
         android:orientation="horizontal"
-        android:checkedButton="@+id/rb_option_circle"
-        app:layout_constraintTop_toBottomOf="@id/tv_options_crop">
-        <RadioButton
-            android:id="@+id/rb_option_circle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="circleCrop"/>
-        <RadioButton
-            android:id="@+id/rb_center_crop"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="centerCrop"/>
-    </RadioGroup>
-    <TextView
-        android:id="@+id/tv_transitions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAllCaps="false"
-        android:text="options_crop"
-        app:layout_constraintTop_toBottomOf="@id/rg_options"
-        android:layout_margin="5dp"/>
-    <RadioGroup
-        android:id="@+id/rg_transitions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:checkedButton="@+id/rb_no_transition"
-        app:layout_constraintTop_toBottomOf="@id/tv_transitions">
-        <RadioButton
-            android:id="@+id/rb_no_transition"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="no"/>
-        <RadioButton
-            android:id="@+id/rb_transition_fade"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="fade"/>
-        <RadioButton
-            android:id="@+id/rb_transition_crossfade"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="crossfade"/>
-    </RadioGroup>
+        android:padding="5dp"
+        app:layout_constraintLeft_toLeftOf="@id/bg"
+        app:layout_constraintRight_toRightOf="@id/bg"
+        app:layout_constraintTop_toBottomOf="@id/bg">
 
-    <Button
-        android:id="@+id/btn_apply_options"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="apply options"
-        android:textAllCaps="false"
-        app:layout_constraintTop_toBottomOf="@id/rg_transitions"
-        android:layout_margin="5dp"/>
+        <CheckBox
+            android:id="@+id/checkbox_play_control"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/checkbox_checked_normal"
+            android:button="@null"
+            android:padding="5dp" />
 
-</android.support.constraint.ConstraintLayout>
+        <SeekBar
+            android:id="@+id/seek"
+            android:layout_width="0dp"
+            android:layout_height="10dp"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="5dp"
+            android:layout_weight="1"
+            android:progressDrawable="@drawable/seekbar_progress" />
+
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="302dp"
+        android:layout_height="202dp"
+        android:background="@color/colorBlackLight"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_control_top" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/pager_container"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginLeft="1dp"
+        app:layout_constraintLeft_toLeftOf="@id/ll_control_top"
+        app:layout_constraintRight_toRightOf="@id/ll_control_top"
+        app:layout_constraintTop_toBottomOf="@id/ll_control_top" />
+
+
+
+    <ImageView
+        android:id="@+id/iv_test_placeholder"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:scaleType="fitXY"
+        app:layout_constraintLeft_toLeftOf="@id/pager_container"
+        app:layout_constraintTop_toBottomOf="@id/pager_container"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

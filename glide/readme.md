@@ -1,3 +1,9 @@
+# Glide 使用
+
+- 解决模拟播放时的闪烁问题
+- 使用动态图做 placeholder
+
+---
 
 ## 占位符
 
@@ -44,9 +50,16 @@ TransitionOptions
  
  如果不使用变换，你的图像将会“跳入”其显示位置，直接替换掉之前的图像。为了避免这种突然的改变，你可以淡入view，或者让多个Drawable交叉淡入，
  而这些都需要使用TransitionOptions完成。
+
+
  
  ## 遇到的不解
  
  - 使用 clear() 后 
-  图片编程了 placeholder 使用的占位图。
+  图片变成了 placeholder 使用的占位图。
+
+
+
+
+
   

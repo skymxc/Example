@@ -4,7 +4,6 @@ android {
     compileSdkVersion rootProject.ext.version.compileSdkVersion
 
 
-
     defaultConfig {
         applicationId "com.skymxc.example.glide"
         minSdkVersion rootProject.ext.version.minSdkVersion
@@ -12,7 +11,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
     }
 
@@ -29,6 +28,7 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation library.support_appcompat_v7
     implementation library.support_constraint_layout
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation library.test_junit
     androidTestImplementation library.test_runner
     androidTestImplementation library.test_espresso
@@ -36,6 +36,7 @@ dependencies {
         exclude group: 'com.android.support'
     }
     annotationProcessor library.glide_compiler
+    annotationProcessor 'androidx.annotation:annotation:1.0.0'
     implementation library.okhttp
     implementation library.retrofit
 //    implementation 'com.squareup.okhttp3:okhttp:3.11.0'
