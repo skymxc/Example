@@ -2,15 +2,15 @@
 
 
 
-奉上翻译地址： [处理生命周期]( https://developer.android.google.cn/topic/libraries/architecture/lifecycle )
+奉上翻译原文地址： [处理生命周期]( https://developer.android.google.cn/topic/libraries/architecture/lifecycle )
 
 
 
-生命周期感知组件可以感知其他组件的生命周期，例如 Activity，Fragment等，以便于在组件的生命周期状态更改时做出相应的操作。这些组件可以帮你更好的组织代码，让你的代码更轻，更好维护。
+生命周期感知组件可以感知其他组件的生命周期，例如 Activity，Fragment等，以便于在组件的生命周期状态变化时做出相应的操作。支持生命感知的组件可以帮你更好的组织代码，让你的代码更轻，更好维护。
 
 
 
-通常是在 Activity 和 Fragment 的生命周期方法里实现一些操作。然而，这种模式会导致代码不好管理，容易出现错误。通过支持生命周期的组件，可以将原本在生命周期方法里的操作移到组件内部。
+对于需要响应生命周期变化的组件，我们通常是在 `Activity` 和 `Fragment`  的生命周期方法里实现一些操作。然而，这种模式会导致代码不好管理，容易出现错误。通过支持生命周期的组件，可以将原本在生命周期方法里的操作移到组件内部。
 
 
 
@@ -158,7 +158,7 @@ class MyActivity extends AppCompatActivity {
 
 
 
-此外，并不能保证在 Activity 或者 Fragment 停止之前启动我们的组件。特别是那些需要长期运行的操作，例如在 `onStart()` 里的检查配置操作。这就可能会出现在 `onStart()` 里的操作还未启动，而 `onStop()` 里却要停止的情况。
+此外，这并不能保证在 Activity 或者 Fragment 停止之前启动我们的组件。特别是那些需要长期运行的操作，例如在 `onStart()` 里的检查配置操作。这就可能会出现在 `onStart()` 里的操作还未启动，而 `onStop()` 里却要停止的情况。
 
 Kotlin
 
@@ -225,9 +225,9 @@ class MyActivity extends AppCompatActivity {
 
 ` androidx.lifecycle` 包提供了一些类和接口，可帮助你以弹性和隔离的方式解决这些问题。 
 
-## 声明周期
+## 生命周期
 
- [`Lifecycle`](https://developer.android.google.cn/reference/androidx/lifecycle/Lifecycle.html)  是一个类，它持有相关组件（例如 Activity 和 Fragment）的生命周期状态信息并且可以让其他对象观察这个状态。
+ [`Lifecycle`](https://developer.android.google.cn/reference/androidx/lifecycle/Lifecycle.html)  是一个类，它持有相关组件（例如 Activity 和 Fragment）的生命周期状态信息并且可以让其他对象观察到这个状态。
 
 `Lifecycle` 使用两个主要枚举来跟踪相关组件的生命周期状态。
 
@@ -244,10 +244,6 @@ class MyActivity extends AppCompatActivity {
 
 
 ![构成 Android Activity 生命周期的事件和状态](picture/lifecycle-states.png)
-
-
-
- 将状态视为图形的节点，将事件视为这些节点之间的边缘。 
 
 
 
@@ -302,7 +298,7 @@ myLifecycleOwner.getLifecycle().addObserver(new MyObserver());
 
  
 
-这个接口从单个类中抽象出生命周期的所有权，例如 Activity 和 Fragment，让你写的组件共享生命周期。任何类都可以实现 `LifecycleOwner` 接口。
+这个接口从单个类中抽象出生命周期的所有权，例如 Activity 和 Fragment，可以与你写的组件共享生命周期。任何类都可以实现 `LifecycleOwner` 接口。
 
  实现 `LifecycleObserver` 的组件与实现 `LifecycleOwner` 的组件可以无缝地衔接，因为所有者可以提供生命周期，观察者可以注册该生命周期以观察。 
 
@@ -501,7 +497,7 @@ public class MyActivity extends Activity implements LifecycleOwner {
 - 尝试编写数据驱动的 UI ，其中 UI 控制器的职责是在数据更改时更新视图，或者将用户操作通知给 ViewModel 。
 - 将数据业务逻辑放在 ViewModel 类。ViewModel 类的定位应该是 UI 控制器和应用中其他部分的连接器。但并不是说让 ViewModel 类去获取数据，相反的应该让其他合适的组件去获取数据，ViewModel 类只是把结果提供给 UI 控制器。
 - 使用数据绑定库维护视图和 UI 控制器的整洁。这让视图更具声明性，并减少在 UI 控制器的更新代码。如果你倾向于使用 Java ，可以使用  [Butter Knife](http://jakewharton.github.io/butterknife/)   减少重复代码。
-- 如果 UI 过去复杂，可以考试创建一个 Presenter 类管理 UI 更新，这可能更麻烦，但是可以更好的管理 UI 。
+- 如果 UI 过于复杂，可以考试创建一个 Presenter 类管理 UI 更新，这可能更麻烦，但是可以更好的管理 UI 。
 - 避免在 ViewModel 引用 View和 Activity 上下文。如果 ViewModel 生命超过 Activity （配置发生更改的情况下）可能会造成 Activity 泄漏，并且不被垃圾处理器回收。
 -  使用 Kotlin 协程来管理长时间运行的任务以及可以异步运行的其他操作。 
 
@@ -532,11 +528,11 @@ public class MyActivity extends Activity implements LifecycleOwner {
 
 
 
- 如果观察者的关联生命周期至少不是 `STARTED`， `LiveData` 避免调用观察者，从而避免了这种极端情况。  在幕后，它在决定调用其观察者之前调用 `isAtLeast（）`。 
+ 如果观察者的关联生命周期至少不是 `STARTED`， `LiveData` 不会调用观察者，从而避免了这种极端情况。  在幕后，它在决定调用其观察者之前调用 `isAtLeast（）` 判断当前状态。 
 
 
 
- 不幸的是，在 `onSaveInstanceState（）` 之后调用了 `AppCompatActivity ` 的 `onStop（）` 方法，这留下了一个空白，在该空白中，不允许 UI 状态更改，但生命周期尚未移至 `CREATED` 状态。 
+不幸的是，在 `onSaveInstanceState（）` 之后调用了 `AppCompatActivity ` 的 `onStop（）` 方法，这留下了一个空白，在该空白中，不允许 UI 状态更改，但生命周期尚未移至 `CREATED` 状态。 
 
  
 
@@ -546,7 +542,7 @@ public class MyActivity extends Activity implements LifecycleOwner {
 
  不幸的是，此解决方案有两个主要问题： 
 
--  在 API 级别 23 和更低级别上，Android 系统实际上会保存活动的状态，即使该活动已被另一个活动部分覆盖 。 换句话说，Android 系统调用 `onSaveInstanceState（）` ，但不一定调用 `onStop（）` 。  这将创建一个可能较长的时间间隔，在该时间间隔中，即使无法修改其 UI 状态，观察者仍认为生命周期处于活动状态。 
+-  在 API 级别 23 和更低级别上，Android 系统实际上会保存 `Activity` 的状态，即使该 `Activity` 已被另一个 `Activity` 部分覆盖 。 换句话说，Android 系统调用 `onSaveInstanceState（）` ，但不一定调用 `onStop（）` 。  这将创建一个可能较长的时间间隔，在该时间间隔中，即使无法修改其 UI 状态，观察者仍认为生命周期处于活动状态。 
 -  任何要向 `LiveData`  类公开类似行为的类都必须实现 `Lifecycle`  beta 2 及更低版本提供的解决方法。 
 
 
