@@ -243,7 +243,7 @@ class MyActivity extends AppCompatActivity {
 
 
 
-![构成 Android Activity 生命周期的事件和状态](picture\lifecycle-states.png)
+![构成 Android Activity 生命周期的事件和状态](picture/lifecycle-states.png)
 
 
 
