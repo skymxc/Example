@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".SecondActivity">
+
+    <data>
+
+
+        <variable
+            name="user"
+            type="com.github.skymxc.entity.User" />
+
+        <variable
+            name="eventHandler"
+            type="com.github.skymxc.EventsHandler" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/binding_second_tv_user_last_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{user.lastName}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/binding_second_tv_user_first_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(` · `) + user.firstName}"
+            app:layout_constraintLeft_toRightOf="@id/binding_second_tv_user_last_name"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/binding_second_tv_divide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="------------------"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/binding_second_tv_user_last_name" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/binding_second_recycler"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/binding_second_tv_divide"
+            android:layout_margin="@dimen/binding_margin"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/binding_second_checkbox"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/binding_second_recycler"
+            android:layout_margin="@dimen/binding_margin"
+            android:checked="@={eventHandler.checked}"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/binding_second_btn_update_checked"
+            app:layout_constraintLeft_toRightOf="@id/binding_second_checkbox"
+            app:layout_constraintTop_toBottomOf="@id/binding_second_recycler"
+            app:layout_constraintRight_toRightOf="parent"
+            android:text="update checked"
+            android:onClick="@{()->eventHandler.updateChecked()}"
+            android:textAllCaps="false"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/binding_second_tv_checkbox_result"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/binding_second_recycler"
+            android:layout_margin="@dimen/binding_margin"
+            android:text="@{String.valueOf(eventHandler.checked)}"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,18 +1,314 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <variable
+            name="string"
+            type="String" />
+
+        <variable
+            name="banner"
+            type="com.github.skymxc.entity.Banner" />
+
+        <variable
+            name="banner2"
+            type="com.github.skymxc.entity.Banner" />
+
+        <variable
+            name="eventsHandler"
+            type="com.github.skymxc.MainActivity" />
+
+        <variable
+            name="eventsHandler2"
+            type="com.github.skymxc.EventsHandler" />
+
+        <!--        集合-->
+        <import type="java.util.List" />
+
+        <import type="java.util.Map" />
+
+        <import type="android.util.SparseArray" />
+
+        <!--        要使用转义 > =&lt; -->
+        <variable
+            name="list"
+            type="List&lt;String>" />
+
+        <variable
+            name="map"
+            type="Map&lt;String,String>" />
+
+        <variable
+            name="sparse"
+            type="SparseArray&lt;String>" />
+
+        <variable
+            name="index"
+            type="int" />
+
+        <variable
+            name="key"
+            type="String" />
+
+<!--        可观察数据-->
+        <variable
+            name="user"
+            type="com.github.skymxc.entity.User" />
+
+<!--        注意这个地方是 ObservableMap 不是 ObservableArrayMap-->
+        <variable
+            name="observableMap"
+            type="androidx.databinding.ObservableMap&lt;String,Object>" />
+
+        <!--        注意这个地方是 ObservableList 不是 ObservableArrayList-->
+        <variable
+            name="observableList"
+            type="androidx.databinding.ObservableList&lt;Object>" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+<!--        这里的 paddingLeft 只为测试 绑定适配器，不建议这么使用 @{10}-->
+        <TextView
+            android:id="@+id/binding_tv_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{banner.url ?? banner.desc ,default=my_default}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <!--        自动避免 空指针问题 ，无须担心-->
+        <TextView
+            android:id="@+id/binding_tv_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{banner2.desc}"
+            android:textColor="@android:color/holo_red_light"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/binding_tv_1" />
+
+        <!--        集合元素访问，直接使用 [] 操作符-->
+        <TextView
+            android:id="@+id/binding_tv_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{list[index]}"
+            android:textColor="@color/colorPrimaryDark"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/binding_tv_2" />
+
+        <!--        使用资源 dimen -->
+        <!--        map 也可以使用 map[key] 也可以使用 map.key -->
+        <TextView
+            android:id="@+id/binding_tv_map"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{map[key]}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/binding_tv_list" />
+
+        <!--        使用符号 ` -->
+        <TextView
+            android:id="@+id/binding_tv_map_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{map[`key`]}"
+            app:layout_constraintLeft_toRightOf="@id/binding_tv_map"
+            app:layout_constraintTop_toBottomOf="@id/binding_tv_list" />
+
+        <TextView
+            android:id="@+id/binding_tv_map_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{map.key}"
+            app:layout_constraintLeft_toRightOf="@id/binding_tv_map_1"
+            app:layout_constraintTop_toBottomOf="@id/binding_tv_list" />
+
+        <!--         花样使用 map-->
+        <TextView
+            android:id="@+id/binding_tv_map_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{map["key"]}'
+            app:layout_constraintLeft_toRightOf="@id/binding_tv_map_2"
+            app:layout_constraintTop_toBottomOf="@id/binding_tv_list" />
+
+        <TextView
+            android:id="@+id/binding_tv_sparse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@{@dimen/binding_padding}"
+            android:text="@{sparse[index]}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/binding_tv_map" />
+
+        <TextView
+            android:id="@+id/binding_tv_string"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onTouch="@{eventsHandler::onTouch}"
+            android:padding="@dimen/binding_padding"
+            android:text="@{string}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/binding_tv_sparse" />
+
+        <!--        事件绑定：
+
+        databinding 可以通过写表达式的方式处理分发的事件，事件的属性是由 Listener 的方法名字决定的，
+        例如 View.onClickListener 里的方法是 onClick(),那么对应的 view 的属性应该是 android:onClick。
+
+
+        -->
+
+        <!--        方法引用-->
+        <Button
+            android:id="@+id/binding_btn_update_index"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/binding_margin"
+            android:onClick="onClick"
+            android:text="update index "
+            android:textAllCaps="false"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/binding_tv_string" />
+
+        <!--        监听绑定-->
+        <Button
+            android:id="@+id/binding_btn_print_map"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/binding_margin"
+            android:onClick="@{()->eventsHandler.printMap(map)}"
+            android:text="print map"
+            android:textAllCaps="false"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/binding_btn_update_index" />
+
+        <Button
+            android:id="@+id/binding_btn_print_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/binding_margin"
+            android:onClick="@{()->eventsHandler2.printList(list)}"
+            android:onLongClick="@{(view)->eventsHandler2.printMap(view,map)}"
+            android:text="print list"
+            android:textAllCaps="false"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/binding_btn_print_map" />
+
+        <Button
+            android:id="@+id/binding_btn_predicate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/binding_margin"
+            android:onClick="@{(v) -> v.visibility==0 ? eventsHandler.showToast(v) : void}"
+            android:text="invisible"
+            android:textAllCaps="false"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/binding_btn_print_list" />
+
+        <include
+            android:id="@+id/banner_desc"
+            layout="@layout/layout_banner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/binding_btn_predicate"
+            bind:banner="@{banner}" />
+
+        <TextView
+            android:id="@+id/binding_tv_observable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="------------使用可观察的数据对象-------"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/banner_desc" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/binding_margin"
+            android:id="@+id/binding_tv_observable_url"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:text="@{banner.url}"
+            app:layout_constraintTop_toBottomOf="@id/binding_tv_observable"/>
+        <TextView
+            android:id="@+id/binding_tv_observable_path"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/binding_margin"
+            android:text="@{banner.imagePath}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/binding_tv_observable_url" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/binding_tv_user_name"
+            android:text="@{user.firstName +'·'+ user.lastName}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/binding_tv_observable_path"
+            android:layout_margin="@dimen/binding_margin"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/binding_tv_observable_map_1"
+            android:text="@{observableMap.firstName}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/binding_tv_user_name"/>
+       <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/binding_tv_observable_map_2"
+            android:text="@{String.valueOf(observableMap.age)}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/binding_tv_observable_map_1"/>
+       <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/binding_tv_observable_list_1"
+            android:text="@{String.valueOf(observableList[0])}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/binding_tv_observable_map_2"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_update_observable_value"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/binding_tv_observable_list_1"
+            android:text="更改可观察数据"
+            android:onClick="@{() -> eventsHandler2.updateValue(user,banner,observableMap,observableList)}"/>
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="to SecondActivity"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_margin="@dimen/binding_margin"
+            android:textAllCaps="false"
+            android:id="@+id/binding_btn_to_second"
+            android:onClick="@{()->eventsHandler.toSecondActivity()}"/>
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/binding_btn_to_second"
+            android:layout_margin="@dimen/binding_margin"
+            app:imageUrl='@{"https://img2018.cnblogs.com/blog/1642764/201910/1642764-20191024180928148-181542369.png"}'
+            app:error="@{@drawable/error}"
+            app:placeholder="@{@drawable/placeholder}"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

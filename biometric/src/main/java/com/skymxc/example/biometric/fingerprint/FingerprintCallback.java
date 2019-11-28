@@ -1,6 +1,6 @@
 package com.skymxc.example.biometric.fingerprint;
 
-import android.support.v4.hardware.fingerprint.FingerprintManagerCompat;
+import androidx.core.hardware.fingerprint.FingerprintManagerCompat;
 
 /**
  * Create By 孟祥超

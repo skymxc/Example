@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -22,9 +23,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
+    // databinding 不需要声明依赖，是和 android studio捆绑在一起的，加入下面的 DSL 配置即可
+    dataBinding {
+        enabled = true
+    }
 }
-
+kapt {
+    generateStubs = true
+}
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -34,4 +40,11 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    kapt "com.android.databinding:compiler:3.4.0"
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+
+    implementation('com.github.bumptech.glide:glide:4.8.0') {
+        exclude group: 'com.android.support'
+    }
+    kapt 'com.github.bumptech.glide:compiler:4.8.0'
 }

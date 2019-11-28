@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="eventHandler"
+            type="com.github.skymxc.adapter.BaseRecyclerViewAdapter.RecyclerItemEventsProxy" />
+
+        <variable
+            name="user"
+            type="com.github.skymxc.entity.User" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="50dp"
+        android:onClick="@{(view)->eventHandler.onClick(user,view)}"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/binding_item_tv_user_first_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/binding_margin"
+            android:text="@{user.firstName}" />
+
+        <TextView
+            android:id="@+id/binding_item_tv_user_last_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/binding_margin"
+            android:text="@{user.lastName}" />
+    </LinearLayout>
+</layout>

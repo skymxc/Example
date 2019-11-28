@@ -1,12 +1,10 @@
 package com.skymxc.example.biometric;
 
-import android.app.Activity;
 import android.app.KeyguardManager;
-import android.content.Context;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.hardware.fingerprint.FingerprintManagerCompat;
+import androidx.annotation.RequiresApi;
+import androidx.fragment.app.FragmentActivity;
+import androidx.core.hardware.fingerprint.FingerprintManagerCompat;
 
 import com.skymxc.example.biometric.fingerprint.FingerprintAuthenticationDialogFragment;
 import com.skymxc.example.biometric.fingerprint.FingerprintCallback;

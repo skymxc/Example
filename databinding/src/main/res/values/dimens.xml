@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="binding_padding">8dp</dimen>
+    <dimen name="binding_margin">8dp</dimen>
+</resources>

@@ -1,8 +1,8 @@
 package com.skymxc.example.biometric;
 
 import android.os.Build;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import javax.crypto.Cipher;
 
