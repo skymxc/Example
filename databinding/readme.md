@@ -3,6 +3,12 @@
 > 奉上 Google 的官方文档地址： [数据绑定库]( https://developer.android.google.cn/topic/libraries/data-binding )
 
 
+<br/>
+数据绑定库可以在布局文件里使用声明性格式绑定数据源到界面视图上。
+简化了之前的需要在 Activity 里 `findViewById()` 找到视图，然后再设置数据。
+
+另外，数据绑定库可以单向绑定，双向绑定，实现数据驱动，事件驱动。
+
 
 databinding 不需要声明依赖，是和 android studio捆绑在一起的，加入下面的 DSL 配置即可
 
@@ -60,13 +66,13 @@ android{
 
 
 
-> **注意：**  布局表达式应保持简单，因为它们不能进行单元测试并且对 IDE 的支持有限。为了简化布局表达，可以使用自定义绑定适配器（下面有接收）。
+> **注意：**  布局表达式应保持简单，因为它们不能进行单元测试并且对 IDE 的支持有限。为了简化布局表达，可以使用自定义绑定适配器（下面有解释）。
 
 
 
 ### 数据对象
 
- 普通对象就可以使用，例如一个用户实体
+普通对象就可以，例如一个用户实体
 
 Kotlin
 ```kotlin
@@ -84,7 +90,7 @@ public class User {
 }
 ```
 这种类型的对象具有永不更改的数据，在程序中，通常只读取一次数据，此后再也不会更改。也可以使用遵循一组约定的对象，例如 Java 中访问器方法的用法，如以下示例所示：
-Kotlin
+
 
 ```java
 public class User {
@@ -194,7 +200,7 @@ android:visibility="@{age > 13 ? View.GONE : View.VISIBLE}"
 android:transitionName='@{"image_" + id}'
 ```
 
-#### 不能使用操作符
+#### 不能使用的操作符
 
 - this
 - super
@@ -992,7 +998,7 @@ private static class User extends BaseObservable {
 
 会产生一个 BR 类，这类含有数据绑定使用到的资源 ID。 Bindable注释在编译期间会在BR类文件中生成一个入口。
 
-![BR类警告](\picture\BR.png)
+![BR类警告](picture/BR.png)
 
 如果不能更改数据类的基类，则可以使用PropertyChangeRegistry对象来实现Observable接口，以高效地注册和通知侦听器。
 
@@ -1224,7 +1230,7 @@ protected void onCreate(Bundle savedInstanceState) {
 
 
 
-![视图对应的字段](\picture\为每个具有id的视图创建属性.png)
+![视图对应的字段](picture/为每个具有id的视图创建属性.png)
 
  该库可以一次从视图结构中提取包含ID的视图。  这种机制比为布局中的每个视图调用 `findViewById()` 方法要快。
 
@@ -2000,7 +2006,7 @@ public class Converter {
 
 [Google 的使用示例仓库]( https://github.com/android/databinding-samples )
 
-[此文的代码示例]( https://github.com/skymxc/Example )
+[此文的代码示例](https://github.com/skymxc/Example/tree/master/databinding)
 
 ## End
 
