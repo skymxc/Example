@@ -1,4 +1,4 @@
-LiveData (点这里)[LiveData.md]
+LiveData [点这里](LiveData.md)
 
 # 生命周期感知组件 Lifecycle
 
