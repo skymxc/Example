@@ -11,4 +11,4 @@
 - biometric 指纹识别
 - widget-switch switch 控件 自定义样式-按钮，轨道，字体等
 - databinding 数据绑定库
-- lifecycle 生命感知组件
+- lifecycle 生命感知组件; LiveData

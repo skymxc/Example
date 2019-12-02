@@ -10,8 +10,7 @@
         android:id="@+id/lifecycle_main_fl_container"
         android:layout_width="300dp"
         android:layout_height="300dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="50dp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -19,22 +18,156 @@
         android:id="@+id/lifecycle_main_btn_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="onClick"
         android:text="add fragment"
         android:textAllCaps="false"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:onClick="onClick"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <Button
         android:id="@+id/lifecycle_main_btn_remove"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="onClick"
         android:text="remove fragment"
         android:textAllCaps="false"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:onClick="onClick"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/lifecycle_main_tv_str"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/lifecycle_margin"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lifecycle_main_fl_container" />
+
+    <Button
+        android:id="@+id/lifecycle_main_btn_update_str"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:text="update str"
+        android:textAllCaps="false"
+        app:layout_constraintLeft_toRightOf="@id/lifecycle_main_btn_add"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/lifecycle_main_btn_apply_map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:text="apply map"
+        android:textAllCaps="false"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lifecycle_main_btn_add" />
+
+    <TextView
+        android:id="@+id/lifecycle_main_tv_str_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/lifecycle_margin"
+        app:layout_constraintLeft_toRightOf="@id/lifecycle_main_tv_str"
+        app:layout_constraintTop_toTopOf="@id/lifecycle_main_tv_str" />
+
+
+    <TextView
+        android:id="@+id/lifecycle_main_tv_str_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/lifecycle_margin"
+        app:layout_constraintLeft_toRightOf="@id/lifecycle_main_tv_str_1"
+        app:layout_constraintTop_toTopOf="@id/lifecycle_main_tv_str" />
+
+    <Button
+        android:id="@+id/lifecycle_main_btn_to_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:text="to user"
+        android:textAllCaps="false"
+        app:layout_constraintLeft_toRightOf="@id/lifecycle_main_btn_apply_map"
+        app:layout_constraintTop_toTopOf="@id/lifecycle_main_btn_apply_map" />
+
+    <Button
+        android:id="@+id/lifecycle_main_btn_update_num_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:text="update num 1"
+        android:textAllCaps="false"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lifecycle_main_btn_apply_map" />
+
+    <Button
+        android:id="@+id/lifecycle_main_btn_update_num_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:text="num 2"
+        android:textAllCaps="false"
+        app:layout_constraintLeft_toRightOf="@id/lifecycle_main_btn_update_num_1"
+        app:layout_constraintTop_toBottomOf="@id/lifecycle_main_btn_apply_map" />
+
+    <Button
+        android:id="@+id/lifecycle_main_btn_update_num_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:text="num 3"
+        android:textAllCaps="false"
+        app:layout_constraintLeft_toRightOf="@id/lifecycle_main_btn_update_num_2"
+        app:layout_constraintTop_toBottomOf="@id/lifecycle_main_btn_apply_map" />
+
+    <Button
+        android:id="@+id/lifecycle_main_btn_update_num_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:text="num 4"
+        android:textAllCaps="false"
+        app:layout_constraintLeft_toRightOf="@id/lifecycle_main_btn_update_num_3"
+        app:layout_constraintTop_toBottomOf="@id/lifecycle_main_btn_apply_map" />
+
+    <TextView
+        android:id="@+id/lifecycle_main_tv_num_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/lifecycle_margin"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lifecycle_main_btn_update_num_1" />
+
+    <TextView
+        android:id="@+id/lifecycle_main_tv_num_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/lifecycle_margin"
+        app:layout_constraintLeft_toRightOf="@id/lifecycle_main_tv_num_1"
+        app:layout_constraintTop_toBottomOf="@id/lifecycle_main_btn_update_num_1" />
+
+    <TextView
+        android:id="@+id/lifecycle_main_tv_num_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/lifecycle_margin"
+        app:layout_constraintLeft_toRightOf="@id/lifecycle_main_tv_num_2"
+        app:layout_constraintTop_toBottomOf="@id/lifecycle_main_btn_update_num_1" />
+
+    <TextView
+        android:id="@+id/lifecycle_main_tv_num_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/lifecycle_margin"
+        app:layout_constraintLeft_toRightOf="@id/lifecycle_main_tv_num_3"
+        app:layout_constraintTop_toBottomOf="@id/lifecycle_main_btn_update_num_1" />
+
+    <TextView
+        android:id="@+id/lifecycle_main_tv_num_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/lifecycle_margin"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lifecycle_main_tv_num_4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

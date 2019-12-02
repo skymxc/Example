@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="user"
+            type="com.github.skymxc.lifecycler.entity.User" />
+       <variable
+            name="user2"
+            type="com.github.skymxc.lifecycler.entity.User2" />
+      <variable
+            name="user3"
+            type="com.github.skymxc.lifecycler.entity.User3" />
+        <variable
+            name="eventHandler"
+            type="com.github.skymxc.lifecycler.user.UserActivity.EventsProxy" />
+
+        <variable
+            name="vm"
+            type="com.github.skymxc.lifecycler.user.UserViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".user.UserActivity">
+
+        <TextView
+            android:id="@+id/lifecycle_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/lifecycle_margin"
+            android:text="@{`name1 -> `+user.firstName+` · `+user.lastName ,default=name}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/lifecycle_margin"
+            android:onClick="@{()->eventHandler.updateUserName(user)}"
+            android:text="update name"
+            android:textAllCaps="false"
+            android:id="@+id/lifecycle_user_btn_update_name_1"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lifecycle_user_name"
+            android:layout_margin="@dimen/lifecycle_margin"
+            android:text="@{`name2 -> `+user2.firstName+` · `+user2.lastName ,default=name2}"
+            android:id="@+id/lifecycle_user_tv_name_2"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{()->eventHandler.updateUserName2(user2)}"
+            android:text="update name2"
+            android:id="@+id/lifecycle_user_btn_update_name_2"
+            android:textAllCaps="false"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lifecycle_user_btn_update_name_1"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lifecycle_user_tv_name_2"
+            android:layout_margin="@dimen/lifecycle_margin"
+            android:text="@{`name3 -> `+user3.firstName+` · `+user3.lastName ,default=name3}"
+            android:id="@+id/lifecycle_user_tv_name_3"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{()->eventHandler.updateUserName3(user3)}"
+            android:text="update name3"
+            android:id="@+id/lifecycle_user_btn_update_name_3"
+            android:textAllCaps="false"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lifecycle_user_btn_update_name_2"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lifecycle_user_tv_name_3"
+            android:layout_margin="@dimen/lifecycle_margin"
+            android:text='@{`name4 -> `+ "name4"}'
+            android:id="@+id/lifecycle_user_tv_name_4"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{()->vm.updateUserName4()}"
+            android:text="update name4"
+            android:id="@+id/lifecycle_user_btn_update_name_4"
+            android:textAllCaps="false"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lifecycle_user_btn_update_name_3"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lifecycle_user_tv_name_4"
+            android:layout_margin="@dimen/lifecycle_margin"
+            android:text='@{ `name5 -> `+"name5"}'
+            android:id="@+id/lifecycle_user_tv_name_5"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{()->vm.updateName()}"
+            android:text="update name5"
+            android:id="@+id/lifecycle_user_btn_update_name_5"
+            android:textAllCaps="false"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lifecycle_user_btn_update_name_4"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
