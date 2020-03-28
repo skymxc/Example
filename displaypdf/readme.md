@@ -29,7 +29,7 @@
 在 pdf.js 的例子里看到了在手机上使用的例子，就改了改，它这个做到了循环使用 canvas，并且是逐页加载。
 修改之后在手机上使用 32M 的文件轻松无压力。
 
-![memory.png](\images\memory.png)
+![memory.png](https://github.com/skymxc/Example/blob/master/displaypdf/images/memory.png)
 
 简单写了个 Demo :https://github.com/skymxc/Example/tree/master/displaypdf
 
@@ -37,8 +37,9 @@ assets 目录是修改后的页面。
 
 
 显示网络文件还是要下载到本地才可以，因为跨域访问的限制问题。
-![memory.png](\images\screen-0.jpg)
-![memory.png](\images\screen-1.jpg)
+
+![memory.png](https://github.com/skymxc/Example/blob/master/displaypdf/images/screen-0.jpg)
+![memory.png](https://github.com/skymxc/Example/blob/master/displaypdf/images/screen-1.jpg)
 
 
 End
