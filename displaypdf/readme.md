@@ -27,7 +27,7 @@
 因为是在加载完成后，每页都创建一个 canvas 显示，没有做到逐页加载，也没有做任何循环使用和销毁的处理，内存就爆了。
 
 在 pdf.js 的例子里看到了在手机上使用的例子，就改了改，它这个做到了循环使用 canvas，并且是逐页加载。
-修改之后在手机上使用 32M 的文件轻松无压力。
+修改之后在手机上使用 32M 的文件轻松无压力。[示例，传送门](https://github.com/mozilla/pdf.js/tree/master/examples/mobile-viewer)
 
 ![memory.png](https://github.com/skymxc/Example/blob/master/displaypdf/images/memory.png)
 
