@@ -1,6 +1,6 @@
 # Android 上预览 PDF 文件
 
-最近在 手机上要显示 PDF 文件，在搜索引擎上找到了很多方案，大体上有以下集中：
+最近在 手机上要显示 PDF 文件，在搜索引擎上找到了很多方案，大体上有以下几种：
 - 使用提供的在线服务，例如 Google 文档预览服务，mWebView.loadUrl("http://docs.google.com/gview?embedded=true&url="+ pdfUrl);
 - 使用 AndroidPdfViewer，这是一个 GitHub 上开源的库，除了体积大点别的都挺好， https://github.com/barteksc/AndroidPdfViewer
 - 使用 Moliza 开源的 Pdf.js 这个库是很强大的，配合 WebView ，可以支持预览，缩放，翻页等等功能
