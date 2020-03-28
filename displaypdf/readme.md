@@ -8,6 +8,10 @@
 
 我是选择了 pdf.js 这个库，使用 WebView 配合 H5 页面，可以做到随意的自定义，并且体积很小，放在服务器的话就更小了。
 
+- 使用资源：https://github.com/mozilla/pdf.js
+- 版本 版本是 2.3.200
+
+
 > 在这里记录下使用的过程也方便后来者。
 
 考虑到网络不稳定的情况，所以我把 js 库下载下来了，不介意的可以直接使用网络库
@@ -17,8 +21,6 @@
 - https://unpkg.com/pdfjs-dist/
 
 
-- 使用资源：[pdf.js](https://github.com/mozilla/pdf.js)
-- 版本 版本是 2.3.200
 
 刚开始使用时，直接使用提供的 API 创建 canvas ，每一页创建一个 canvas 然后排列下来，因为有其他的内容要显示。
 开发测试的时候因为文件小，并且是在电脑上浏览的没有发现什么问题，在手机上测试的时候使用了一个稍微大点的文件，内存立马就爆了。
@@ -27,14 +29,16 @@
 在 pdf.js 的例子里看到了在手机上使用的例子，就改了改，它这个做到了循环使用 canvas，并且是逐页加载。
 修改之后在手机上使用 32M 的文件轻松无压力。
 
-![memory.png](memory.png)
+![memory.png](\images\memory.png)
 
-简单写了个 Demo ：：
+简单写了个 Demo :https://github.com/skymxc/Example/tree/master/displaypdf
 
 assets 目录是修改后的页面。
 
-显示网络文件还是要下载到本地才可以，因为跨域访问的限制问题。
 
+显示网络文件还是要下载到本地才可以，因为跨域访问的限制问题。
+![memory.png](\images\screen-0.jpg)
+![memory.png](\images\screen-1.jpg)
 
 
 End
