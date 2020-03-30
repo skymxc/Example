@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
 
+    private String url = "";
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
         webSettings.setAllowFileAccessFromFileURLs(true);
         webSettings.setAllowUniversalAccessFromFileURLs(true);
         display("file:///android_asset/demo.pdf");
+
+
     }
 
     void display(String url) {
@@ -88,8 +92,17 @@ public class MainActivity extends AppCompatActivity {
                 pickFile();
                 break;
             case R.id.network_file:
-                String uri = "";
-                downloadFile(uri);
+                int checkSelfPermission = ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
+                int checkSelfPermission1 = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                if (checkSelfPermission == PackageManager.PERMISSION_GRANTED
+                        && checkSelfPermission1 == PackageManager.PERMISSION_GRANTED) {
+                    downloadFile(url);
+                } else {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 11);
+                    }
+                }
+
                 break;
         }
         return true;
@@ -97,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == 10) {
+        if (requestCode == 10||requestCode==11) {
             if (grantResults.length == 2) {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED
                         && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
@@ -265,7 +278,11 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this,"填写PDF地址",Toast.LENGTH_SHORT).show();
             return;
         }
-        File file = new File(Environment.getExternalStorageDirectory(),getPackageName()+"/temp.pdf");
+
+        String substring = uri.substring(uri.lastIndexOf("/")+1);
+
+        File file = new File(getFilesDir(),substring);
+        Log.e(MainActivity.class.getSimpleName(), "downloadFile: "+file.getAbsolutePath());
 
         new DownloadFileAsyncTask(file, new DownloadFileAsyncTask.OnDownloadListener() {
             @Override
@@ -280,6 +297,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onDownloadFailed(String msg) {
+                Log.e(MainActivity.class.getSimpleName(), "onDownloadFailed: "+msg);
             Toast.makeText(MainActivity.this,msg,Toast.LENGTH_SHORT).show();
             }
         }).execute(uri);

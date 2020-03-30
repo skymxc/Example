@@ -57,11 +57,12 @@ public class DownloadFileAsyncTask extends AsyncTask<String, Integer, String> {
                 is = execute.body().byteStream();
                 long total = execute.body().contentLength();
                 if (!file.getParentFile().exists()){
-                    file.getParentFile().mkdirs();
+                    boolean mkdir = file.getParentFile().mkdir();
+                    if (!mkdir){
+                        return "目录创建失败";
+                    }
                 }
-                if (file.exists()){
-                    file.delete();
-                }
+
                 fos = new FileOutputStream(file);
                 long sum = 0;
                 while ((len = is.read(buf)) != -1) {
@@ -71,9 +72,9 @@ public class DownloadFileAsyncTask extends AsyncTask<String, Integer, String> {
                    publishProgress(progress);
                 }
                 fos.flush();
-                Uri uri = Uri.fromFile(file);
 
             } catch (Exception e) {
+                e.printStackTrace();
                 return e.getMessage();
             } finally {
                 try {
