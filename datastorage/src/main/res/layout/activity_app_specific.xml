@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AppSpecificActivity">
+
+    <TextView
+        android:id="@+id/test_tv_result"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/test_btn_internal_allocatable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="内部存储可用空间"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/test_tv_result" />
+
+    <Button
+        android:id="@+id/test_btn_external_allocatable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="外部存储可用空间"
+        app:layout_constraintLeft_toRightOf="@id/test_btn_internal_allocatable"
+        app:layout_constraintTop_toBottomOf="@id/test_tv_result" />
+
+    <Button
+        android:id="@+id/test_btn_to_remove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="显示移除缓存"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/test_btn_internal_allocatable" />
+
+    <Button
+        android:id="@+id/test_btn_internal_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="内部文件列表"
+        app:layout_constraintLeft_toRightOf="@id/test_btn_to_remove"
+        app:layout_constraintTop_toBottomOf="@id/test_btn_internal_allocatable" />
+
+
+    <Button
+        android:id="@+id/test_btn_read_internal_file"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="读取内部存储文件"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/test_btn_to_remove" />
+
+    <Button
+        android:id="@+id/test_btn_write_internal_file"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="写入内部存储文件"
+        app:layout_constraintLeft_toRightOf="@id/test_btn_read_internal_file"
+        app:layout_constraintTop_toBottomOf="@id/test_btn_to_remove" />
+
+
+    <Button
+        android:id="@+id/test_btn_create_nested_dir"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="创建内部嵌套目录"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/test_btn_read_internal_file" />
+
+    <Button
+        android:id="@+id/test_btn_del_internal_cache"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="删除内部缓存"
+        app:layout_constraintLeft_toRightOf="@id/test_btn_create_nested_dir"
+        app:layout_constraintTop_toBottomOf="@id/test_btn_read_internal_file" />
+
+
+    <Button
+        android:id="@+id/test_btn_read_internal_cache_file"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="读取内部缓存文件"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/test_btn_create_nested_dir" />
+
+    <Button
+        android:id="@+id/test_btn_write_internal_cache_file"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="写入内部缓存文件"
+        app:layout_constraintLeft_toRightOf="@id/test_btn_read_internal_cache_file"
+        app:layout_constraintTop_toBottomOf="@id/test_btn_create_nested_dir" />
+
+    <Button
+        android:id="@+id/test_btn_read_external_cache_file"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="读取外部缓存文件"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/test_btn_read_internal_cache_file" />
+
+    <Button
+        android:id="@+id/test_btn_write_external_cache_file"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="写入外部缓存文件"
+        app:layout_constraintLeft_toRightOf="@id/test_btn_read_external_cache_file"
+        app:layout_constraintTop_toBottomOf="@id/test_btn_read_internal_cache_file" />
+
+
+    <Button
+        android:id="@+id/test_btn_read_external_file"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="读取外部文件"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/test_btn_read_external_cache_file" />
+
+    <Button
+        android:id="@+id/test_btn_write_external_file"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="写入外部文件"
+        app:layout_constraintLeft_toRightOf="@id/test_btn_read_external_file"
+        app:layout_constraintTop_toBottomOf="@id/test_btn_read_external_cache_file" />
+    <Button
+        android:id="@+id/test_btn_external_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="外部空间 list"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/test_btn_read_external_file" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

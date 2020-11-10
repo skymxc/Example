@@ -1,5 +1,5 @@
-//include ':app'
+include ':datastorage'//include ':app'
 //include ':dagger2'
 //include ':exchange'
 //include ':glide', ':mpchart', ':biometric', ':widget-switch', ':databinding', ':lifecycle'
-//include ':displaypdf'
+include ':displaypdf'
